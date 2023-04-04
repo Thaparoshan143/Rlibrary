@@ -8,15 +8,13 @@ using namespace Roshan;
 
 int Test()
 {   
-    // Rstring temp,str1;
-    // str1.SetString("this is cool");
-    // temp=str1;
-    // temp.PrintString();
-    // str1.PrintString();
+    Rstring temp,str1;
+    str1.SetString("this is cool");
+    temp=str1;
 
-    // temp.SetString("THis is different");
-    // temp.PrintString();
-    // str1.PrintString();
+    temp.SetString("This is different");
+    temp.PrintString();
+    str1.PrintString();
 
     
 

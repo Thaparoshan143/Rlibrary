@@ -7,7 +7,7 @@ namespace Roshan{
 
     Rstring::Rstring()
     {
-        this->s=nullptr;
+        this->s=allocate_string_block(0);
         this->len=get_string_size(this->s);
     }
 
@@ -33,7 +33,8 @@ namespace Roshan{
 
     void Rstring::SetString(Rstring s)
     {
-        updateNewString(s.GetString());
+        this->s=s.GetString();
+        updateLength();
     }
 
     int Rstring::GetLength()
@@ -82,7 +83,8 @@ namespace Roshan{
     // Operator Overaloading
     Rstring Rstring::operator = (Rstring& rhs)
     {   
-        updateNewString(rhs.GetString());
+        this->s=rhs.GetString();
+        updateLength();
         return this->s;
     }
 

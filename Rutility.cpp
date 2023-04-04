@@ -46,6 +46,8 @@ char* append_string(char *s, char *a)
     
     copy_string(newPtr,s);
     add_string_at(newPtr,get_string_size(s),a);
+
+    delete (s);
     
     return newPtr;
 }
