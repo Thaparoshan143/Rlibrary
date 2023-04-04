@@ -7,15 +7,18 @@
 using namespace Roshan;
 
 int Test()
-{
-    char* temp;
+{   
+    // Rstring temp,str1;
+    // str1.SetString("this is cool");
+    // temp=str1;
+    // temp.PrintString();
+    // str1.PrintString();
 
-    char* one="this is first";
-    char* two="This is second part";
+    // temp.SetString("THis is different");
+    // temp.PrintString();
+    // str1.PrintString();
 
-    temp=append_string(one,two);
-
-    print_string(temp);
+    
 
     return 0;
 }
