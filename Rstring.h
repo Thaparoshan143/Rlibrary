@@ -9,7 +9,7 @@ namespace Roshan
 
 
         private:
+        public:
         char *s;
-
     };
 }

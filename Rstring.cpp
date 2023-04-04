@@ -14,7 +14,9 @@ namespace Roshan{
     {
 
         this->s=allocate_string_block(get_string_size(s));
-        // copy_string(s,this->s);
+        copy_string(s,this->s);
     }
+
+    
 
 }

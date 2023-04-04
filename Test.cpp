@@ -8,8 +8,14 @@ using namespace Roshan;
 
 int Test()
 {
-    int stringSize=get_string_size("This");
-    print_int(stringSize);
+    char* temp;
+
+    char* one="this is first";
+    char* two="This is second part";
+
+    temp=append_string(one,two);
+
+    print_string(temp);
 
     return 0;
 }
