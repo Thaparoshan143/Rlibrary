@@ -1,6 +1,5 @@
 
 #include"Rstring.h"
-#include"Rutility.h"
 
 namespace Roshan{
 
@@ -53,7 +52,7 @@ namespace Roshan{
     char* Rstring::SliceString(int f, int t)
     {
         if(this->len>=t)
-        return get_string_fromto(this->s,f,t);
+        return get_string_ft(this->s,f,t);
 
         return nullptr;
     }
