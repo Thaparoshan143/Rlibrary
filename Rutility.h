@@ -1,10 +1,14 @@
 #pragma once
-#include<iostream>
 
+#include<iostream>
 
 typedef unsigned int Ruint;
 
 #define STRING_END '\0'
+
+#define NULL_PTR "NULL POINTER"
+
+// Global Variable
 
 char* allocate_string_block(Ruint s);
 

@@ -1,3 +1,4 @@
+
 #include"Rutility.h"
 
 char* allocate_string_block(Ruint s)
@@ -9,7 +10,7 @@ Ruint get_string_size(char *s)
 {
     if(s==nullptr)
     {
-        print_string("Null!");
+        print_string(NULL_PTR);
         return 0;
     }
     Ruint tempSize=0;
@@ -70,7 +71,7 @@ char* get_string_fromto(char *s,int f, int t)
 {
     if(s==nullptr || f <0 || t <0)
     {
-        print_string("NULL or negative value!");
+        print_string(NULL_PTR);
         return nullptr;
     }
 
@@ -122,16 +123,13 @@ bool does_string_contain(char *s, char *ss)
     {
         if(*(s+index)==*(ss))
         {
-            print_string("First char matched");
             if(compare_string(s+index,ss))
             {
-                print_string("All matched");    
                 return true;
             }
         }
         index++;
     }
-    print_string("Not matched");
     return false;
 
 }

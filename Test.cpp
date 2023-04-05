@@ -1,8 +1,5 @@
-#pragma once
 
-#include<iostream>
 #include"Rstring.h"
-#include"Rutility.h"
 
 using namespace Roshan;
 
@@ -15,8 +12,8 @@ int Test()
     temp.SetString("This is different");
     temp.PrintString();
     str1.PrintString();
+    std::cout << temp.StringExist("haha");
 
-    
 
     return 0;
 }

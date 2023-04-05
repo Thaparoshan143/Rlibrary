@@ -1,3 +1,5 @@
+#pragma once
+#include"Rutility.h"
 
 namespace Roshan
 {
@@ -31,8 +33,7 @@ namespace Roshan
         // Helpers
         void updateLength();
         void updateNewString(char *ns);
-
-        
+        void update(char *s);        
         
     };
 }

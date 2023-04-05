@@ -1,5 +1,4 @@
 
-
 #include"Rstring.h"
 #include"Rutility.h"
 
@@ -13,9 +12,8 @@ namespace Roshan{
 
     Rstring::Rstring(char *s)
     {
-        this->s=allocate_string_block(get_string_size(s)+1);
-        copy_string(this->s,s);
-        updateLength();
+        this->s=nullptr;
+        updateNewString(s);
     }
 
     char* Rstring::GetString()
@@ -77,7 +75,17 @@ namespace Roshan{
 
     bool Rstring::StringExist(Rstring s)
     {
-        return StringExist(s.GetString());
+        char *temp=s.GetString();
+        if(does_string_contain(this->s,temp))
+        {
+            delete (temp);
+            return true;
+        }
+        else
+        {
+            delete (temp);
+            return false;
+        }
     }
 
     // Operator Overaloading
@@ -101,10 +109,17 @@ namespace Roshan{
         {
             return;
         }
+        if(this->s!=nullptr)
         delete (this->s);
+
         int newSize=get_string_size(ns);
         this->s=allocate_string_block(newSize+1);
-        copy_string(this->s,ns);
+        update(ns);
+    }
+
+    void Rstring::update(char *s)
+    {
+        copy_string(this->s,s);
         updateLength();
     }
 
