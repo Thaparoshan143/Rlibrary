@@ -270,6 +270,21 @@ Ruint get_number_size(Ruint n)
     return count;
 }
 
+void append_string_in_file(char *fn, char *s)
+{
+    FILE *fptr=fopen(fn,"a");
+    int size=get_string_size(s);
+    for(int i=0;i<size;i++)
+    {
+        fputc(*(s+i),fptr);
+    }
+    fclose(fptr);
+}
+
+void append_string_in_file_index(char *fn, char *s, int index)
+{
+    
+}
 
 
 // helper Functions

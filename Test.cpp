@@ -6,7 +6,7 @@ using namespace Roshan;
 
 int Test()
 {   
-    srand((unsigned int)time(NULL));  
+    // srand((unsigned int)time(NULL));  
     // Rstring temp,str1;
     // str1.SetString("this is cool");
     // temp=str1;
