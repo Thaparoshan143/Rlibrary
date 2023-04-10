@@ -50,10 +50,17 @@ char* get_string_number(Ruint n);
 
 Ruint get_number_size(Ruint n);
 
+char* get_string_block_from_file(char *fn ,int index, int strSize);
+
+int find_string_index_in_file(char *fn, char *str);
+
 void append_string_in_file(char *fn, char *s);
 
-void append_string_int_file_index(char *fn, char *s, int index);
+void append_string_in_file_index(char *fn, char *as, int index);
 
+void append_string_in_file_before_str(char *fn, char *appstr, char *fstr);
+
+void append_string_in_file_after_str(char *fn, char *appstr, char *fstr);
 
 // Other Helpers //
 

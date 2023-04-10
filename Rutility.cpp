@@ -270,6 +270,67 @@ Ruint get_number_size(Ruint n)
     return count;
 }
 
+char* get_string_block_from_file(char *fn, int index, int strSize)
+{
+    FILE *fptr=fopen(fn,"r");
+    fseek(fptr,index,SEEK_SET);
+    char *tempStr=allocate_string_block(strSize+1);
+    char tempParser=fgetc(fptr);
+
+    int currentSize=0;
+    while(currentSize <strSize && tempParser!=EOF)
+    {
+        *(tempStr+currentSize)=tempParser;
+        tempParser=fgetc(fptr);
+        currentSize++;
+    }
+    *(tempStr+currentSize)='\0';
+    fclose(fptr);
+    return tempStr;
+}
+
+int find_string_index_in_file(char *fn, char *str)
+{
+    FILE *fptr=fopen(fn,"r");
+    char tempParser;
+
+    int currentIndex=0;
+    int seekIndex=0;
+    int strSize=get_string_size(str);
+    tempParser=fgetc(fptr);
+    while(tempParser!=EOF)
+    {
+        if(tempParser==*(str+0))
+        {
+            print_string("first found");
+            for(int i=0;i<strSize;i++)
+            {
+                if(tempParser!=*(str+i))
+                {
+                    print_string("break : ");
+                    break;
+                }
+                seekIndex++;
+                tempParser=fgetc(fptr);
+            }
+            if(seekIndex==strSize)
+            {
+                return currentIndex;
+            }
+        }
+        if(seekIndex>0)
+        {
+            fseek(fptr,-seekIndex,SEEK_CUR);
+            seekIndex=0;
+        }
+        currentIndex++;
+        tempParser=fgetc(fptr);
+    }
+
+    fclose(fptr);
+    return -1;
+}
+
 void append_string_in_file(char *fn, char *s)
 {
     FILE *fptr=fopen(fn,"a");
@@ -283,9 +344,62 @@ void append_string_in_file(char *fn, char *s)
 
 void append_string_in_file_index(char *fn, char *s, int index)
 {
-    
+    FILE *fptr=fopen(fn,"r");
+    char *tempFile=get_random_string(10);
+    tempFile=append_string(tempFile,".txt");
+    FILE *fptrTemp=fopen(tempFile,"w");
+
+    int currentIndex=0;
+    char charParser;
+
+    while(currentIndex<index)
+    {
+        fputc(fgetc(fptr),fptrTemp);
+        currentIndex++;
+    }
+
+    fclose(fptrTemp);
+    append_string_in_file(tempFile,s);
+    fptrTemp=fopen(tempFile,"a");
+    charParser=fgetc(fptr);
+
+    while(charParser!=EOF)
+    {
+        fputc(charParser,fptrTemp);
+        charParser=fgetc(fptr);
+    }
+
+    fclose(fptr);
+    fclose(fptrTemp);
+    copy_file_content(tempFile,fn);
 }
 
+void append_string_in_file_before_str(char *fn, char *appstr, char *fstr)
+{
+    int index=find_string_index_in_file(fn,fstr);
+
+    if(index<0)
+    {
+        print_string("String not found");
+        return;
+    }
+
+    append_string_in_file_index(fn,appstr,index);
+}
+
+void append_string_in_file_after_str(char *fn, char *appstr, char *fstr)
+{
+    int index=find_string_index_in_file(fn,fstr);
+    index=index+get_string_size(fstr);
+    if(index <0)
+    {
+        print_string("String not found");
+        return;
+    }
+
+    append_string_in_file_index(fn,appstr,index);
+
+}
 
 // helper Functions
 
