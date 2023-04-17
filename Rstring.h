@@ -8,6 +8,7 @@ namespace Roshan
         public:
         Rstring();
         Rstring(char *s);
+        ~Rstring();
 
         char* GetString();
         void SetString(char *s);

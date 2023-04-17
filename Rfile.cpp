@@ -15,12 +15,37 @@ namespace Roshan
         this->fileName=fn;
     }
 
-    void Rfile::OpenForRead()
+    Rfile::~Rfile()
     {
-        char *fileName=this->fileName.GetString();
-
-        this->fptr=fopen(fileName,"r");
-        delete (fileName);
+        this->fptr=nullptr;
     }
 
+    void Rfile::OpenForRead()
+    {
+        openFileIn("r");
+    }
+
+    void Rfile::OpenForWrite()
+    {
+        openFileIn("w");
+    }
+
+    void Rfile::OpenForAppend()
+    {
+        openFileIn("a");
+    }
+
+
+    void Rfile::openFileIn(char *m)
+    {
+        if(this->fptr!=nullptr)
+        {
+            fclose(this->fptr);
+        }
+
+        char *fileName=this->fileName.GetString();
+
+        this->fptr=fopen(fileName,m);
+        delete (fileName);
+    }
 }

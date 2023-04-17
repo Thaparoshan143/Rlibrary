@@ -418,3 +418,9 @@ void print_int(int n)
 {
     std::cout << n << std::endl;
 }
+
+void print_title_int(char *t, int v)
+{
+    print_string(t);
+    print_int(v);
+}

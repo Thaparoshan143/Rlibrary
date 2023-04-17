@@ -67,3 +67,5 @@ void append_string_in_file_after_str(char *fn, char *appstr, char *fstr);
 void print_string(const char *s);
 
 void print_int(int n);
+
+void print_title_int(char *t, int n);

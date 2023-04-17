@@ -15,6 +15,13 @@ namespace Roshan{
         updateNewString(s);
     }
 
+    Rstring::~Rstring()
+    {
+        delete (this->s);
+        this->s=nullptr;
+        this->len=0;
+    }
+
     char* Rstring::GetString()
     {
         char* temp=allocate_string_block(this->len);
