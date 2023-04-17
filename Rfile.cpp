@@ -35,6 +35,12 @@ namespace Roshan
         openFileIn("a");
     }
 
+    int Rfile::GetIndexOfWord(char *s)
+    {
+        openFileIn("r");
+        return find_string_index_in_file(this->fptr,s);
+        fclose(this->fptr);
+    }
 
     void Rfile::openFileIn(char *m)
     {

@@ -15,6 +15,8 @@ namespace Roshan
         void OpenForWrite();
         void OpenForAppend();
 
+        int GetIndexOfWord(char *s);
+
         private:
         Rstring fileName;
         FILE *fptr;

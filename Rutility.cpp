@@ -289,9 +289,8 @@ char* get_string_block_from_file(char *fn, int index, int strSize)
     return tempStr;
 }
 
-int find_string_index_in_file(char *fn, char *str)
+int find_string_index_in_file(FILE *fptr, char *str)
 {
-    FILE *fptr=fopen(fn,"r");
     char tempParser;
 
     int currentIndex=0;
@@ -326,10 +325,17 @@ int find_string_index_in_file(char *fn, char *str)
         currentIndex++;
         tempParser=fgetc(fptr);
     }
-
-    fclose(fptr);
     return -1;
 }
+
+int find_string_index_in_file(char *fn, char *str)
+{
+    FILE *fptr=fopen(fn,"r");
+    int temp=find_string_index_in_file(fptr,str);
+    fclose(fptr);
+    return temp;
+}
+
 
 void append_string_in_file(char *fn, char *s)
 {

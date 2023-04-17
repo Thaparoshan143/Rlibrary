@@ -54,6 +54,8 @@ char* get_string_block_from_file(char *fn ,int index, int strSize);
 
 int find_string_index_in_file(char *fn, char *str);
 
+int find_string_index_in_file(FILE* fptr, char *str);
+
 void append_string_in_file(char *fn, char *s);
 
 void append_string_in_file_index(char *fn, char *as, int index);
