@@ -6,8 +6,7 @@ using namespace Roshan;
 
 int Test()
 {   
-    Rstring temp;
-    temp.SetString("this is test");
+    
 
     return 0;
 }

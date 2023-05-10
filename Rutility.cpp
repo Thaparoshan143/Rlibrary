@@ -410,7 +410,7 @@ void append_string_in_file_after_str(const char *fn, const char *appstr, const c
 // helper Functions
 
 
-void print_string(const const char *s)
+void print_string(const char *s)
 {
     if(s==nullptr)
     {

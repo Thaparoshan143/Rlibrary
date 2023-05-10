@@ -66,8 +66,8 @@ void append_string_in_file_after_str(const char *fn, const char *appstr, const c
 
 // Other Helpers //
 
-void print_string(const const char *s);
+void print_string(const char *s);
 
 void print_int(int n);
 
-void print_title_int(const const char *t, int n);
+void print_title_int(const char *t, int n);
