@@ -15,13 +15,13 @@ namespace Roshan
         void OpenForWrite();
         void OpenForAppend();
 
-        int GetIndexOfWord(char *s);
+        int GetIndexOfWord(const char *s);
 
         private:
         Rstring fileName;
         FILE *fptr;
 
         // Helper Functions
-        void openFileIn(char *m);
+        void openFileIn(const char *m);
     };
 }

@@ -9,7 +9,7 @@ namespace Roshan{
         this->len=get_string_size(this->s);
     }
 
-    Rstring::Rstring(char *s)
+    Rstring::Rstring(const char *s)
     {
         this->s=nullptr;
         updateNewString(s);
@@ -30,7 +30,7 @@ namespace Roshan{
         return temp;
     }
 
-    void Rstring::SetString(char *s)
+    void Rstring::SetString(const char *s)
     {
         updateNewString(s);
     }
@@ -51,7 +51,7 @@ namespace Roshan{
         print_string(this->s);
     }
 
-    void Rstring::AppendString(char *s)
+    void Rstring::AppendString(const char *s)
     {
         this->s=append_string(this->s,s);
     }
@@ -74,7 +74,7 @@ namespace Roshan{
         string_lower(this->s);
     }
 
-    bool Rstring::StringExist(char *s)
+    bool Rstring::StringExist(const char *s)
     {
         return does_string_contain(this->s,s);
     }
@@ -109,7 +109,7 @@ namespace Roshan{
         this->len=get_string_size(this->s);
     }
 
-    void Rstring::updateNewString(char *ns)
+    void Rstring::updateNewString(const char *ns)
     {
         if(ns==nullptr)
         {
@@ -123,7 +123,7 @@ namespace Roshan{
         update(ns);
     }
 
-    void Rstring::update(char *s)
+    void Rstring::update(const char *s)
     {
         copy_string(this->s,s);
         updateLength();

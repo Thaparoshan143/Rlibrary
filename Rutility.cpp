@@ -6,7 +6,7 @@ char* allocate_string_block(Ruint s)
     return new char[s];
 }
 
-Ruint get_string_size(char *s)
+Ruint get_string_size(const char *s)
 {
     if(s==nullptr)
     {
@@ -22,7 +22,7 @@ Ruint get_string_size(char *s)
     return tempSize;
 }
 
-void copy_string(char *des, char *src)
+void copy_string(char *des, const char *src)
 {
     if(src==nullptr || des==nullptr)
     {
@@ -39,7 +39,7 @@ void copy_string(char *des, char *src)
     *(des+index)=*(src+index);
 }
 
-char* append_string(char *s, char *a)
+char* append_string(const char *s, const char *a) 
 {
     int newSize=get_string_size(s) + get_string_size(a);
     // Allocating new block and one more for end of string//
@@ -53,14 +53,14 @@ char* append_string(char *s, char *a)
     return newPtr;
 }
 
-char* append_string(char *s, char *a1, char *a2)
+char* append_string(const char *s, const char *a1, const char *a2)
 {
     char *temp=append_string(s,a1);
     temp=append_string(temp,a2);
     return temp;
 }
 
-void add_string_at(char *s, Ruint ind, char *a)
+void add_string_at(char *s, Ruint ind, const char *a)
 {
     int addSize=get_string_size(a);
     Ruint index=0;
@@ -74,7 +74,7 @@ void add_string_at(char *s, Ruint ind, char *a)
     *(s+ind+index)=*(a+index);
 }
 
-char* get_string_ft(char *s,int f, int t)
+char* get_string_ft(const char *s,int f, int t)
 {
     if(s==nullptr || f <0 || t <0)
     {
@@ -121,7 +121,7 @@ void string_lower(char *s)
     }
 }
 
-bool does_string_contain(char *s, char *ss)
+bool does_string_contain(const char *s, const char *ss)
 {
     if(get_sub_string_index(s,ss) >=0)
     {
@@ -133,7 +133,7 @@ bool does_string_contain(char *s, char *ss)
     }
 }
 
-bool compare_string(char *s1, char *s2)
+bool compare_string(const char *s1, const char *s2)
 {
     Ruint index=0;
 
@@ -148,7 +148,7 @@ bool compare_string(char *s1, char *s2)
     return true;
 }
 
-int get_sub_string_index(char *ms, char *ss)
+int get_sub_string_index(const char *ms, const char *ss)
 {
     Ruint index=0;
     Ruint subSize=get_string_size(ss);
@@ -168,7 +168,7 @@ int get_sub_string_index(char *ms, char *ss)
     return -1;
 }
 
-void copy_file_content(char *srcfn, char *desfn)
+void copy_file_content(const char *srcfn, const char *desfn)
 {
     FILE *fptr1,*fptr2;
     fptr1=fopen(srcfn,"r");
@@ -190,20 +190,20 @@ void copy_file_content(char *srcfn, char *desfn)
     fclose(fptr1);fclose(fptr2);
 }
 
-void duplicate_file_content(char *fn)
+void duplicate_file_content(const char *fn)
 {
     Ruint extIndex=get_sub_string_index(fn,".");
-    char *ext=get_string_ft(fn,extIndex+1,get_string_size(fn));
+    const char *ext=get_string_ft(fn,extIndex+1,get_string_size(fn));
 
-    char *dupName=get_string_ft(fn,1,extIndex);
-    char *randomNumber=get_string_number(get_random_number_ft(0,10000));
+    const char *dupName=get_string_ft(fn,1,extIndex);
+    const char *randomNumber=get_string_number(get_random_number_ft(0,10000));
     dupName=append_string(dupName,randomNumber,ext);
     copy_file_content(fn,dupName);
 
     delete (ext);delete (dupName);delete (randomNumber);
 }
 
-Ruint get_file_char_count(char *fn)
+Ruint get_file_char_count(const char *fn)
 {
     Ruint count;
     FILE *fptr=fopen(fn,"r");
@@ -270,7 +270,7 @@ Ruint get_number_size(Ruint n)
     return count;
 }
 
-char* get_string_block_from_file(char *fn, int index, int strSize)
+char* get_string_block_from_file(const char *fn, int index, int strSize)
 {
     FILE *fptr=fopen(fn,"r");
     fseek(fptr,index,SEEK_SET);
@@ -289,7 +289,7 @@ char* get_string_block_from_file(char *fn, int index, int strSize)
     return tempStr;
 }
 
-int find_string_index_in_file(FILE *fptr, char *str)
+int find_string_index_in_file(FILE *fptr, const char *str)
 {
     char tempParser;
 
@@ -328,7 +328,7 @@ int find_string_index_in_file(FILE *fptr, char *str)
     return -1;
 }
 
-int find_string_index_in_file(char *fn, char *str)
+int find_string_index_in_file(const char *fn, const char *str)
 {
     FILE *fptr=fopen(fn,"r");
     int temp=find_string_index_in_file(fptr,str);
@@ -337,7 +337,7 @@ int find_string_index_in_file(char *fn, char *str)
 }
 
 
-void append_string_in_file(char *fn, char *s)
+void append_string_in_file(const char *fn, const char *s)
 {
     FILE *fptr=fopen(fn,"a");
     int size=get_string_size(s);
@@ -348,10 +348,10 @@ void append_string_in_file(char *fn, char *s)
     fclose(fptr);
 }
 
-void append_string_in_file_index(char *fn, char *s, int index)
+void append_string_in_file_index(const char *fn, const char *s, int index)
 {
     FILE *fptr=fopen(fn,"r");
-    char *tempFile=get_random_string(10);
+    const char *tempFile=get_random_string(10);
     tempFile=append_string(tempFile,".txt");
     FILE *fptrTemp=fopen(tempFile,"w");
 
@@ -380,7 +380,7 @@ void append_string_in_file_index(char *fn, char *s, int index)
     copy_file_content(tempFile,fn);
 }
 
-void append_string_in_file_before_str(char *fn, char *appstr, char *fstr)
+void append_string_in_file_before_str(const char *fn, const char *appstr, const char *fstr)
 {
     int index=find_string_index_in_file(fn,fstr);
 
@@ -393,7 +393,7 @@ void append_string_in_file_before_str(char *fn, char *appstr, char *fstr)
     append_string_in_file_index(fn,appstr,index);
 }
 
-void append_string_in_file_after_str(char *fn, char *appstr, char *fstr)
+void append_string_in_file_after_str(const char *fn, const char *appstr, const char *fstr)
 {
     int index=find_string_index_in_file(fn,fstr);
     index=index+get_string_size(fstr);
@@ -410,7 +410,7 @@ void append_string_in_file_after_str(char *fn, char *appstr, char *fstr)
 // helper Functions
 
 
-void print_string(const char *s)
+void print_string(const const char *s)
 {
     if(s==nullptr)
     {
@@ -425,7 +425,7 @@ void print_int(int n)
     std::cout << n << std::endl;
 }
 
-void print_title_int(char *t, int v)
+void print_title_int(const char *t, int v)
 {
     print_string(t);
     print_int(v);
